@@ -1,0 +1,82 @@
+{
+  "name": "StockMovement",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "IN",
+        "OUT",
+        "ADJUST"
+      ],
+      "enumColors": [
+        "green",
+        "red",
+        "yellow"
+      ]
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "order_item_id": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "establishment_id",
+    "product_id",
+    "type",
+    "quantity"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

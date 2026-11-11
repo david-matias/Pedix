@@ -1,0 +1,67 @@
+{
+  "name": "Option",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "price_delta_cents": {
+      "type": "number"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "sort_order": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "group_id",
+    "name"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

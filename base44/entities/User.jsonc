@@ -1,0 +1,17 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string",
+      "description": "Loja vinculada ao lojista. Definida apenas pelo servidor a partir do e-mail do dono.",
+      "rls": {
+        "update": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    }
+  }
+}

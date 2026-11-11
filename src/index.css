@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 33% 95%;
+    --foreground: 24 15% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 15% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 15% 11%;
+    --primary: 357 84% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 20% 93%;
+    --secondary-foreground: 24 15% 11%;
+    --muted: 30 18% 93%;
+    --muted-foreground: 25 8% 42%;
+    --accent: 30 25% 90%;
+    --accent-foreground: 24 15% 11%;
+    --destructive: 357 84% 44%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 28 15% 88%;
+    --input: 28 15% 85%;
+    --ring: 357 84% 44%;
+    --brand: 357 84% 44%;
+    --success: 152 60% 30%;
+    --warning: 32 91% 37%;
+    --radius: 1rem;
+    --chart-1: 357 84% 44%;
+    --chart-2: 152 60% 30%;
+    --chart-3: 32 91% 37%;
+    --chart-4: 24 15% 11%;
+    --chart-5: 30 20% 70%;
+    --font-heading: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 24 15% 11%;
+    --sidebar-primary: 357 84% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 18% 93%;
+    --sidebar-accent-foreground: 24 15% 11%;
+    --sidebar-border: 28 15% 88%;
+    --sidebar-ring: 357 84% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pedix-shadow {
+    box-shadow: 0 1px 2px rgba(31, 26, 23, 0.04), 0 12px 32px -18px rgba(31, 26, 23, 0.22);
+  }
+}

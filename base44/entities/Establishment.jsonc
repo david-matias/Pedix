@@ -1,0 +1,95 @@
+{
+  "name": "Establishment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "neighborhood": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "cover_url": {
+      "type": "string"
+    },
+    "is_open": {
+      "type": "boolean"
+    },
+    "delivery_enabled": {
+      "type": "boolean"
+    },
+    "pickup_enabled": {
+      "type": "boolean"
+    },
+    "min_order_cents": {
+      "type": "number"
+    },
+    "eta_delivery_min": {
+      "type": "number"
+    },
+    "eta_pickup_min": {
+      "type": "number"
+    },
+    "owner_email": {
+      "type": "string"
+    },
+    "order_number_start": {
+      "type": "number"
+    },
+    "whatsapp_fail_simulated": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "$or": [
+        {
+          "data.owner_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

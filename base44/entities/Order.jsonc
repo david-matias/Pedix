@@ -1,0 +1,192 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "number": {
+      "type": "number"
+    },
+    "order_channel": {
+      "type": "string",
+      "enum": [
+        "ONLINE",
+        "TABLE",
+        "COUNTER"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "yellow"
+      ]
+    },
+    "fulfillment_type": {
+      "type": "string",
+      "enum": [
+        "DELIVERY",
+        "PICKUP",
+        "DINE_IN"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "green"
+      ]
+    },
+    "table_id": {
+      "type": "string"
+    },
+    "closed_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "RECEIVED",
+        "CONFIRMED",
+        "PREPARING",
+        "OUT_FOR_DELIVERY",
+        "READY_FOR_PICKUP",
+        "ABERTA",
+        "CONTA",
+        "COMPLETED",
+        "CANCELLED"
+      ],
+      "enumColors": [
+        "red",
+        "blue",
+        "yellow",
+        "purple",
+        "purple",
+        "blue",
+        "yellow",
+        "green",
+        "gray"
+      ]
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "customer_whatsapp": {
+      "type": "string"
+    },
+    "address_street": {
+      "type": "string"
+    },
+    "address_neighborhood": {
+      "type": "string"
+    },
+    "address_reference": {
+      "type": "string"
+    },
+    "payment_code": {
+      "type": "string",
+      "enum": [
+        "CASH",
+        "PIX",
+        "CARD_ON_DELIVERY"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue",
+        "purple"
+      ]
+    },
+    "change_for_cents": {
+      "type": "number"
+    },
+    "subtotal_cents": {
+      "type": "number"
+    },
+    "delivery_fee_cents": {
+      "type": "number"
+    },
+    "discount_cents": {
+      "type": "number"
+    },
+    "coupon_code": {
+      "type": "string"
+    },
+    "total_cents": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "cancel_reason": {
+      "type": "string"
+    },
+    "status_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "courier_id": {
+      "type": "string"
+    },
+    "dispatched_at": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "establishment_id",
+    "number",
+    "fulfillment_type",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "name": "OrderItem",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "unit_price_cents": {
+      "type": "number"
+    },
+    "line_total_cents": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "is_combo": {
+      "type": "boolean"
+    },
+    "sort_order": {
+      "type": "number"
+    },
+    "removed": {
+      "type": "boolean"
+    },
+    "removed_by": {
+      "type": "string"
+    },
+    "removed_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "order_id",
+    "product_name",
+    "quantity",
+    "unit_price_cents"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

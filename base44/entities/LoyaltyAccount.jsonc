@@ -1,0 +1,62 @@
+{
+  "name": "LoyaltyAccount",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "points": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "establishment_id",
+    "customer_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

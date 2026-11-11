@@ -1,0 +1,80 @@
+{
+  "name": "NotificationLog",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "WHATSAPP"
+      ],
+      "enumColors": [
+        "green"
+      ]
+    },
+    "template": {
+      "type": "string",
+      "enum": [
+        "ORDER_RECEIVED"
+      ],
+      "enumColors": [
+        "blue"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SENT",
+        "FAILED"
+      ],
+      "enumColors": [
+        "green",
+        "red"
+      ]
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "order_id",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

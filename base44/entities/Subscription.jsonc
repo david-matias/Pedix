@@ -1,0 +1,69 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "TRIAL",
+        "ACTIVE",
+        "PAST_DUE",
+        "SUSPENDED"
+      ],
+      "enumColors": [
+        "blue",
+        "green",
+        "yellow",
+        "red"
+      ]
+    },
+    "monthly_fee_cents": {
+      "type": "number"
+    },
+    "implementation_fee_cents": {
+      "type": "number"
+    },
+    "implementation_paid": {
+      "type": "boolean"
+    },
+    "started_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "establishment_id",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

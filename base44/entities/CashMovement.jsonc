@@ -1,0 +1,82 @@
+{
+  "name": "CashMovement",
+  "type": "object",
+  "properties": {
+    "establishment_id": {
+      "type": "string"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "SALE",
+        "SUPPLY",
+        "WITHDRAWAL"
+      ],
+      "enumColors": [
+        "green",
+        "blue",
+        "yellow"
+      ]
+    },
+    "amount_cents": {
+      "type": "number"
+    },
+    "payment_code": {
+      "type": "string"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "establishment_id",
+    "session_id",
+    "type",
+    "amount_cents"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.establishment_id": "{{user.data.establishment_id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
